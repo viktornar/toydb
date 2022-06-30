@@ -103,7 +103,7 @@ is with a single node and fsync disabled - the table below shows results for oth
 revealing clear potential for improvement:
 
 |             | `sync: false` | `sync: true` |
-| ----------- | ------------- | ------------ |
+|-------------|---------------|--------------|
 | **1 node**  | 1067 txn/s    | 38 txn/s     |
 | **5 nodes** | 417 txn/s     | 19 txn/s     |
 
@@ -132,6 +132,24 @@ UPDATE account SET balance = balance + {amount} WHERE id = {destination};
 
 COMMIT;
 ```
+
+## Debugging
+
+[VSCode](https://code.visualstudio.com) provides a very intuitive environment for debugging toyDB.
+The debug configuration is included under `.vscode/launch.json`. Follow these steps to set it up:
+
+1. Install the [CodeLLDB](https://marketplace.visualstudio.com/items?itemName=vadimcn.vscode-lldb)
+   extension.
+
+2. Go to "Run and Debug" tab and select e.g. "Debug unit tests in library 'toydb'".
+
+3. To debug the binary, create a data directory:
+
+    ```
+    $ sudo mkdir /var/lib/toydb && sudo chown $(whoami) /var/lib/toydb
+    ```
+
+   And then selet "Debug executable 'toydb'" under "Run and Debug".
 
 ## Credits
 
